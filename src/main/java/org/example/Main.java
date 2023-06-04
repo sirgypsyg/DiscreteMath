@@ -7,9 +7,6 @@ public class Main {
         int m = 3;
         int n = 2;
 
-        System.out.println("test");
 
-
-        System.out.println("Hello world!");
     }
 }
