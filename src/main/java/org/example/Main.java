@@ -1,11 +1,14 @@
 package org.example;
 
+import java.util.*;
+
 public class Main {
     public static void main(String[] args) {
-
-        System.out.println(Ackermann.ackermann(2,2));
-
-
+        Ackermann ackermann = new Ackermann();
+        ackermann.ackermann(2,2);
+        //System.out.println(ackermann.values);
+        //System.out.println(ackermann.counter);
+        ackermann.modify();
 
     }
 }
