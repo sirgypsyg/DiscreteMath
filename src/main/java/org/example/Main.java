@@ -56,6 +56,15 @@ class Ackermann {
         for (var p : modified)
             System.out.println(p);
     }
+
+    public void ex3(){
+        for (int i = 0; i < values.size(); i+=2){
+            if (i == values.size() - 2)
+                System.out.print(values.get(i).substring(0,6) + ".");
+            else
+                System.out.print(values.get(i).substring(0,6) + ",");
+        }
+    }
 }
 
 public class Main {
@@ -64,7 +73,9 @@ public class Main {
         ackermann.ackermann(2,2);
         //System.out.println(ackermann.values);
         //System.out.println(ackermann.counter);
-        ackermann.modify();
+        //ackermann.modify();
+        ackermann.ex3();
+
 
     }
 }
