@@ -5,20 +5,18 @@ class Ackermann {
     public List<String> values = new ArrayList<>();
     public int counter = 0;
     public int ackermann(int m, int n){
+        ++counter;
         values.add("A("+ m + "," + n + ") =");
         if (m == 0) {
             values.add(n + 1 + "");
-            ++counter;
             return n + 1;
         }
         if (m > 0 && n == 0) {
             values.add("A("+ (m-1) + "," + 1 + ")");
-            ++counter;
             return ackermann(m-1, 1);
         }
         else {
-            values.add("A("+ (m-1) + "," + "A("+ (m) + "," + (n-1) + ")" + ")");
-            ++counter;
+            values.add(String.format("A(%d, A(%d, %d))", m - 1, m, n - 1));
             return ackermann(m-1, ackermann(m, n-1));
         }
     }
@@ -65,16 +63,58 @@ class Ackermann {
                 System.out.print(values.get(i).substring(0,6) + ",");
         }
     }
+
+    public void ex4(){
+        int rows = 50; // liczba wierszy
+        int columns = 50; // liczba kolumn
+
+        ArrayList<ArrayList<String>> tab = new ArrayList<>(rows);
+
+        for (int i = 0; i < rows; i++) {
+            ArrayList<String> row = new ArrayList<>(columns);
+            for (int j = 0; j < columns; j++) {
+                row.add("0"); // inicjalizacja pustymi łańcuchami
+            }
+            tab.add(row);
+        }
+
+    }
+}
+
+class Sudan {
+    List<String> values = new ArrayList<>();
+    public int S(int n, int x, int y) {
+        values.add(String.format("S{%d}(%d, %d) = ", n, x, y));
+        if (n == 0){
+            values.add(x + y  + "\n");
+            return x + y;
+        }
+        else if (y == 0){
+            values.add(x + "\n");
+            return x;
+        }
+        values.add(String.format("S{%d}(S{%d}(%d,%d),S{%d}(%d,%d) ,%d)\n", n-1,n,x,y-1,n,x,y-1,y));
+        return S(n - 1, S(n, x, y - 1), S(n, x, y - 1) + y);
+    }
 }
 
 public class Main {
     public static void main(String[] args) {
-        Ackermann ackermann = new Ackermann();
-        ackermann.ackermann(2,2);
+//        Ackermann ackermann = new Ackermann();
+//        ackermann.ackermann(2,2);
         //System.out.println(ackermann.values);
         //System.out.println(ackermann.counter);
         //ackermann.modify();
-        ackermann.ex3();
+        //ackermann.ex3();
+
+
+        Sudan sudan = new Sudan();
+        sudan.S(1,3,3);
+        System.out.println(sudan.S(1,3,3));
+//        for (var p : sudan.values){
+//            System.out.print(p);
+//        }
+
 
 
     }
