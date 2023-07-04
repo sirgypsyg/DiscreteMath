@@ -47,8 +47,6 @@ class Ackermann {
                 String closingBracketsToAdd = ")".repeat(bracketsDifference);
                 mod += closingBracketsToAdd;
             }
-
-
             modified.add("(1."+ (j+3) +")" + "\t\t\t=" + mod);
         }
         for (var p : modified)
@@ -84,19 +82,40 @@ class Ackermann {
 class Sudan {
     List<String> values = new ArrayList<>();
     public int S(int n, int x, int y) {
-        values.add(String.format("S{%d}(%d, %d) = ", n, x, y));
+        values.add(String.format("S{%d}(%d, %d)", n, x, y));
         if (n == 0){
-            values.add(x + y  + "\n");
+            values.add(x + y  + "");
             return x + y;
         }
         else if (y == 0){
-            values.add(x + "\n");
+            values.add(x + "");
             return x;
         }
-        values.add(String.format("S{%d}(S{%d}(%d,%d),S{%d}(%d,%d) ,%d)\n", n-1,n,x,y-1,n,x,y-1,y));
+        values.add(String.format("S{%d}(S{%d}(%d,%d),S{%d}(%d,%d) ,%d)", n-1,n,x,y-1,n,x,y-1,y));
         return S(n - 1, S(n, x, y - 1), S(n, x, y - 1) + y);
     }
+
+    public void modify(){
+
+        System.out.println(values.get(0) + " = " + values.get(1));
+        for (int i = 2; i < values.size(); i+=2 ){
+            System.out.println("\t\t = " + String.format());
+        }
+
+        for (int i = 0; i < values.size(); i+=2){
+            System.out.println(values.get(i) + " = " + values.get(i+1));
+        }
+    }
 }
+
+//        S{1}(3, 3) = S{0}(S{1}(3,2),S{1}(3,2) ,3)
+//        S{1}(3, 2) = S{0}(S{1}(3,1),S{1}(3,1) ,2)
+//        S{1}(3, 1) = S{0}(S{1}(3,0),S{1}(3,0) ,1)
+//        S{1}(3, 0) = 3
+//        S{1}(3, 0) = 3
+//        S{0}(3, 4) = 7
+//        S{1}(3, 1) = S{0}(S{1}(3,0),S{1}(3,0) ,1)
+//        S{1}(3, 0) = 3
 
 public class Main {
     public static void main(String[] args) {
@@ -111,9 +130,7 @@ public class Main {
         Sudan sudan = new Sudan();
         sudan.S(1,3,3);
         System.out.println(sudan.S(1,3,3));
-//        for (var p : sudan.values){
-//            System.out.print(p);
-//        }
+        sudan.modify();
 
 
 
